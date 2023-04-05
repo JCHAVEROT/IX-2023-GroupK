@@ -14509,7 +14509,7 @@ Heikel Jebali</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Observations-on-component.graph-(see-output-file)">Observations on <code>component.graph</code> (see <a href="./scores/components.txt">output file</a>)<a class="anchor-link" href="#Observations-on-component.graph-(see-output-file)">&#182;</a></h4><p>This graph consists of 2 components hence the set of nodes that can be visited fully depend on the initial node. As we can see we alaways one half of the nodes that have a score of $0$ because it is impossible to reach them if they are not part of the component of the initial node.</p>
+<h4 id="Observations-on-component.graph-(see-scores/components.txt)">Observations on <code>component.graph</code> (see <code>scores/components.txt</code>)<a class="anchor-link" href="#Observations-on-component.graph-(see-scores/components.txt)">&#182;</a></h4><p>This graph consists of 2 components hence the set of nodes that can be visited fully depend on the initial node. As we can see we alaways one half of the nodes that have a score of $0$ because it is impossible to reach them if they are not part of the component of the initial node.</p>
 <p>We also see that whenever we reach node 6, we have to go to node 7. Hence they always have the same score. Also, the node 4 is at the "center" of this component. By this we mean that any path starting from node 4 will end to this node. So this is always the one with the highest score.</p>
 <p>For the second component node 3 is more "isolated" hence it always gets the lowest score as it is harder to reach it and nodes 0 and 2 have the same behavior as nodes 6 and 7 in the first component.</p>
 
@@ -14566,7 +14566,7 @@ Stuck at node 1 after 2 iterations
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Observations-on-absorbing.graph-(see-output-file)">Observations on <code>absorbing.graph</code> (see <a href="./scores/absorbing.txt">output file</a>)<a class="anchor-link" href="#Observations-on-absorbing.graph-(see-output-file)">&#182;</a></h4><p>Here we can clearly see that once we reach node 1 we are stuck because it has no outgoing edge.</p>
+<h4 id="Observations-on-absorbing.graph-(see-scores/absorbing.txt)">Observations on <code>absorbing.graph</code> (see <code>scores/absorbing.txt</code>)<a class="anchor-link" href="#Observations-on-absorbing.graph-(see-scores/absorbing.txt)">&#182;</a></h4><p>Here we can clearly see that once we reach node 1 we are stuck because it has no outgoing edge.</p>
 
 </div>
 </div>
@@ -14636,7 +14636,7 @@ Stuck at node 1 after 2 iterations
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Observation-of-the-new-model-on-component.graph-(see-output-file)">Observation of the new model on <code>component.graph</code> (see <a href="./scores/components_damping.txt">output file</a>)<a class="anchor-link" href="#Observation-of-the-new-model-on-component.graph-(see-output-file)">&#182;</a></h4><p>We are no longer stuck into a component. This makes more sense because a surfer not only clicks on links on the page he currently is but can also open a new tab and go to the "other component". However, it does not seem now that the node in the component of the initial node have a higher probability to be visited which might not be correct since the surfer is still more likely to click on links on his current page rather than opening new tabs.</p>
+<h4 id="Observation-of-the-new-model-on-component.graph-(see-scores/components_damping.txt)">Observation of the new model on <code>component.graph</code> (see <code>scores/components_damping.txt</code>)<a class="anchor-link" href="#Observation-of-the-new-model-on-component.graph-(see-scores/components_damping.txt)">&#182;</a></h4><p>We are no longer stuck into a component. This makes more sense because a surfer not only clicks on links on the page he currently is but can also open a new tab and go to the "other component". However, it does not seem now that the node in the component of the initial node have a higher probability to be visited which might not be correct since the surfer is still more likely to click on links on his current page rather than opening new tabs.</p>
 
 </div>
 </div>
@@ -14661,7 +14661,7 @@ Stuck at node 1 after 2 iterations
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Observations-of-the-new-model-on-absorbing.graph-(see-output-file)">Observations of the new model on <code>absorbing.graph</code> (see <a href="./scores/absorbing_damping.txt">output file</a>)<a class="anchor-link" href="#Observations-of-the-new-model-on-absorbing.graph-(see-output-file)">&#182;</a></h4><p>We are no longer stuck at node 1. This makes sense because the surfer is likely to open a new tab once he is done with this page where he is stuck.</p>
+<h4 id="Observations-of-the-new-model-on-absorbing.graph-(see-scores/absorbing_damping.txt)">Observations of the new model on <code>absorbing.graph</code> (see <code>scores/absorbing_damping.txt</code>)<a class="anchor-link" href="#Observations-of-the-new-model-on-absorbing.graph-(see-scores/absorbing_damping.txt)">&#182;</a></h4><p>We are no longer stuck at node 1. This makes sense because the surfer is likely to open a new tab once he is done with this page where he is stuck.</p>
 
 </div>
 </div>
