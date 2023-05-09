@@ -13116,7 +13116,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Dimensionality-reduction">Dimensionality reduction<a class="anchor-link" href="#Dimensionality-reduction">&#182;</a></h1><p><strong>Internet Analytics - Lab 3</strong></p>
+<h1 id="Dimensionality-Reduction">Dimensionality Reduction<a class="anchor-link" href="#Dimensionality-Reduction">&#182;</a></h1><p><strong>Internet Analytics - Lab 3</strong></p>
 <hr>
 <p><strong>Group:</strong> <em>K</em></p>
 <p><strong>Names:</strong></p>
@@ -13207,10 +13207,10 @@ div#notebook {
 
 
 
-<div id="d2fb76b6-bef3-4201-8c34-0b2efb38ad10"></div>
+<div id="bef0623d-5274-446f-a162-fdb2815356a7"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#d2fb76b6-bef3-4201-8c34-0b2efb38ad10');
+var element = $('#bef0623d-5274-446f-a162-fdb2815356a7');
 
 (function(root) {
   function now() {
@@ -14117,7 +14117,7 @@ var element = $('#d2fb76b6-bef3-4201-8c34-0b2efb38ad10');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>We see that the graph that looks noisy, and that the biggest part of tags have a low variance, but there is still many tags also having a larger one. The latter will contribute more to the variation in the dataset and are therefore more important for distinguishing between movies. The lower variance tags, on the other hand, may not have as much influence in differentiating the movies from each other.</p>
+<h4 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h4><p>We see that the variance graph looks noisy, and that the biggest part of tags have a low variance, but there is still many tags also having a larger one. The latter will contribute more to the variation in the dataset and are therefore more important for distinguishing between movies. The lower variance tags, on the other hand, may not have as much influence in differentiating the movies from each other.</p>
 <p>Only a few eigenvalues out of 1128 are big, while most of them are very small. This means that dimensionality reduction is relevant: representing the data in a lower dimension and at the same time preserving most of the variability of the data is feasible.</p>
 <p>Let's see how many principal directions we need to capture 2/3 of the variability in the data.</p>
 
@@ -14571,8 +14571,8 @@ Lowest: [&#39;comedy&#39; &#39;funny&#39; &#39;hilarious&#39; &#39;goofy&#39; &#
 <span class="c1"># Define the data that appears on the bokeh plot</span>
 <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">proj_2D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span>
-        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">proj_2D</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span>
+        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">proj_2D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">proj_2D</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
         <span class="s2">&quot;movie&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">selected_movies</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span>
         <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">float2rgb</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">selected_movies</span><span class="p">)[:,</span> <span class="mi">2</span><span class="p">]],</span>
         <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">selected_movies</span><span class="p">)[:,</span> <span class="mi">2</span><span class="p">]</span>
@@ -14626,10 +14626,10 @@ Lowest: [&#39;comedy&#39; &#39;funny&#39; &#39;hilarious&#39; &#39;goofy&#39; &#
 
 
 
-<div id="41267320-d9d5-4062-8d05-864134415ee4"></div>
+<div id="24eaa9cb-de4f-4a7e-b6d8-1f394a710036"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#41267320-d9d5-4062-8d05-864134415ee4');
+var element = $('#24eaa9cb-de4f-4a7e-b6d8-1f394a710036');
 (function(root) {
   function embed_document(root) {
     
@@ -14697,7 +14697,7 @@ Furthermore, we can observe that Edge of Tomorrow, Terminator, Star Wars &amp; M
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="PCA-directions-correlation-with-the-Rotten-Tomatoes-score">PCA directions correlation with the Rotten Tomatoes score<a class="anchor-link" href="#PCA-directions-correlation-with-the-Rotten-Tomatoes-score">&#182;</a></h4><p>For the 1st principal component, it is apparent that when the x-coordinate grows, the Rotten Tomatoes score gets bigger.
-For the 2nd principal component, it is less obvious and it and does not seem to be a clear correlation between the two variables.</p>
+For the 2nd principal component, it is less obvious and it does not seem to be a clear correlation between the two variables.</p>
 <p>It makes sense and it is understandable that a movie with higher quality or critically acclaimed would generally receive a higher Rotten Tomatoes score. However, the presence of action or emotional content in a movie does not necessarily induce a Rotten Tomatoes score.</p>
 
 </div>
@@ -14872,10 +14872,10 @@ For the 2nd principal component, it is less obvious and it and does not seem to 
 
 
 
-<div id="0fde2da4-3fc8-407d-81c7-ad5fecdb6d30"></div>
+<div id="b8ec3b09-e77e-4d45-9c7b-915a3b1cd7ca"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#0fde2da4-3fc8-407d-81c7-ad5fecdb6d30');
+var element = $('#b8ec3b09-e77e-4d45-9c7b-915a3b1cd7ca');
 (function(root) {
   function embed_document(root) {
     
@@ -15026,10 +15026,10 @@ var element = $('#0fde2da4-3fc8-407d-81c7-ad5fecdb6d30');
 
 
 
-<div id="846b6819-d354-48af-a8b1-e39750f5e059"></div>
+<div id="c1e3a1c5-44dc-48c8-8017-5c7b947fad1c"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#846b6819-d354-48af-a8b1-e39750f5e059');
+var element = $('#c1e3a1c5-44dc-48c8-8017-5c7b947fad1c');
 (function(root) {
   function embed_document(root) {
     
