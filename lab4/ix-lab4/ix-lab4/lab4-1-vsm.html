@@ -13196,7 +13196,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">freqs</span> <span class="o">=</span> <span class="p">{}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Maps each term to the number of times it appears</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1"># Map each course (cours[&#39;courseId&#39;]) to its processed description, i.e a list of words or n-grams</span>
 <span class="n">processedCourses</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">course</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">courses</span><span class="p">):</span>
@@ -13204,23 +13206,20 @@ div#notebook {
     <span class="n">description</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">description</span><span class="p">]</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
 
-    <span class="c1"># Step 4: Remove punctuation marks</span>
+    <span class="c1"># Remove punctuation marks</span>
     <span class="n">description</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
 
-    <span class="c1"># Step 5: Tokenize the text into words</span>
+    <span class="c1"># Tokenize the text into words</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
     
-    <span class="c1"># Step 6: Remove stopwords</span>
+    <span class="c1"># Remove stopwords</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>                        
         
-    <span class="c1"># Step 7: Stem or lemmatize words</span>
-    <span class="c1">#stemmer = PorterStemmer()</span>
+    <span class="c1"># Lemmatize words</span>
     <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
     <span class="n">lemmatizedTokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
-    
-    <span class="c1">#stemmedTokens = [stemmer.stem(token) for token in tokens]</span>
-    
-    <span class="c1">#freqDist = FreqDist(stemmedTokens)</span>
+        
+    <span class="c1"># Get the frequency of each token and update the freqs map</span>
     <span class="n">freqDist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">lemmatizedTokens</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">lemmatizedTokens</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">freqs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -13228,7 +13227,7 @@ div#notebook {
         <span class="k">else</span><span class="p">:</span>
             <span class="n">freqs</span><span class="p">[</span><span class="n">token</span><span class="p">]</span> <span class="o">+=</span> <span class="n">freqDist</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
 
-    <span class="c1"># Step 9: Add n-grams to the vocabulary</span>
+    <span class="c1"># Add n-grams to the vocabulary</span>
     <span class="n">nGramRange</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># Specify the range of n-grams to consider</span>
     
     <span class="n">ngrams</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13257,7 +13256,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mostFreq</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find most frequent token</span>
+<span class="n">mostFreq</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
 <span class="n">mostFreqToken</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">freq</span> <span class="o">&gt;</span> <span class="n">mostFreq</span><span class="p">:</span> 
@@ -13329,7 +13329,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="p">{}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove frequent and infrequent words and modify the freqs and processedCourses map accordingly</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">term</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">freq</span> <span class="o">&lt;</span> <span class="n">mostFreq</span> <span class="ow">and</span> <span class="n">freq</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
         <span class="n">temp</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq</span>
@@ -13394,6 +13395,21 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>We removed the stopwords because they don't carry a lot of information for the meaning of the whole text and it will reduce the size of the TF-IDF matrix.</li>
+<li>We removed the punctuation for similar reasons.</li>
+<li>We removed very frequent words because they don't help us differentiate between documents if they appear everywhere</li>
+<li>We removed infrequent words because they don't represent the meaning of the text if they are not used often</li>
+<li>We lemmatized the words to group words with very similar meaning (e.g. 'chain' and chains')</li>
+<li>We added 2-grams and 3-grams to have additional information on how the words group together</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Exercise-4.2:-Term-document-matrix">Exercise 4.2: Term-document matrix<a class="anchor-link" href="#Exercise-4.2:-Term-document-matrix">&#182;</a></h2>
 </div>
 </div>
@@ -13403,10 +13419,12 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">termToIdx</span> <span class="o">=</span> <span class="p">{}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Maps each term to an index</span>
+<span class="n">termToIdx</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
     <span class="n">termToIdx</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-    
+
+<span class="c1"># Maps each document to an index</span>
 <span class="n">docToIdx</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">courseId</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="n">newProcessedCourses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -13428,11 +13446,14 @@ div#notebook {
 <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">docToIdx</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="n">TD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
 
+<span class="c1"># Create the term-document matrix</span>
 <span class="k">for</span> <span class="n">courseId</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="n">newProcessedCourses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">description</span><span class="p">:</span>
         <span class="n">TD</span><span class="p">[</span><span class="n">termToIdx</span><span class="p">[</span><span class="n">term</span><span class="p">]][</span><span class="n">docToIdx</span><span class="p">[</span><span class="n">courseId</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
 
+<span class="c1"># Get the number of terms for each document</span>
 <span class="n">termsPerDoc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">TD</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Compute TF and IDF to get TFIDF</span>
 <span class="n">TF</span> <span class="o">=</span> <span class="n">TD</span> <span class="o">/</span> <span class="n">termsPerDoc</span>
 <span class="n">IDF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">TD</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">TFIDF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">TF</span><span class="p">)</span> <span class="o">*</span> <span class="n">IDF</span><span class="p">)</span>
@@ -13521,6 +13542,15 @@ datasets: 0.0530
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>A high score means that the term appears a lot in the document but not that much in the rest of the rest of the corpus, meaning that it is really relevant for this given document.</p>
+<p>A low score means that either the term is infrequent in the document and frequent everywhere, or infrequent everywhere, or very frequent everywhere hence reducing its relevance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Exercise-4.3:-Document-similarity-search">Exercise 4.3: Document similarity search<a class="anchor-link" href="#Exercise-4.3:-Document-similarity-search">&#182;</a></h2>
 </div>
 </div>
@@ -13532,6 +13562,7 @@ datasets: 0.0530
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">combinations</span>
 
+<span class="c1"># Reverse the map of documents to index</span>
 <span class="n">idxToDoc</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">docToIdx</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 </pre></div>
 
@@ -13546,6 +13577,16 @@ datasets: 0.0530
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sim</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Computes the similarity between two vectors using cosine distance</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        i (int): The index of the i-th document</span>
+<span class="sd">        j (int): The index of the j-th document</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The similarity between the two documents</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">d_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TFIDF</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
     <span class="n">d_j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TFIDF</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
     
@@ -13563,6 +13604,12 @@ datasets: 0.0530
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">docSimSearch</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Finds the top 5 courses with the highest score for the term given</span>
+<span class="sd">    </span>
+<span class="sd">    Parameter:</span>
+<span class="sd">        name (string): the name of the term</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">courseIdx</span> <span class="o">=</span> <span class="n">termToIdx</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="n">courseTop5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">TFIDF</span><span class="p">[</span><span class="n">courseIdx</span><span class="p">])[:</span><span class="mi">5</span><span class="p">]</span>
     <span class="n">combs</span> <span class="o">=</span> <span class="n">combinations</span><span class="p">(</span><span class="n">courseTop5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -13637,6 +13684,14 @@ MATH-600 and COM-512: 0.0288
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that the top courses are all math-related courses or courses in which we use graph algorithms which makes sens for markov chains. The similarity between them is good, which also makes sense since they share topics like stochastic processes or graph algorithms</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[31]:</div>
@@ -13686,6 +13741,14 @@ CS-596 and AR-482: 0.0251
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we observe that the only course mentioning 'facebook' is EE-727. Obviously then, the similarity score between courses is very low since we don't really know how the 4 remaining courses were chosen.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
